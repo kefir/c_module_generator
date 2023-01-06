@@ -1,0 +1,41 @@
+# Module template
+name = "PowerRelay"
+name_snake_case = "power_relay"
+description = "Power relay module with optional diagnostics"
+version = "1.0.0"
+
+includes = [ "stdint.h", "stdbool.h" ]
+is_syncronous = true
+run_interval_ms = 10
+
+[types]
+PowerRelayState = { POWER_RELAY_STATE_OFF = 0, POWER_RELAY_STATE_ON = 1, POWER_RELAY_STATE_ERROR = 2 }
+
+[interfaces]
+RelayEnable.description = ""
+
+[inputs]
+relay_enable.type = "bool"
+relay_enable.init_value = "false"
+relay_enable.description = "Relay enable request"
+
+diag.type = "struct"
+diag.description = "Diagnostics inputs"
+
+diag.enable.type = "bool"
+diag.enable.init_value = "false"
+diag.enable.description = "Diagnostics enable"
+
+diag.relay_enabled.type = "bool"
+diag.relay_enabled.init_value = "false"
+diag.relay_enabled.description = "Relay enable diagnostics input"
+
+diag.current.type = "uint16_t"
+diag.current.init_value = "0"
+diag.current.description = "Relay current ADC value"
+
+[outputs]
+state.type = "PowerRelayState"
+state.init = "POWER_RELAY_OFF"
+state.description = "Relay status"
+
