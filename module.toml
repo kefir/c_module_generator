@@ -4,9 +4,13 @@ name_snake_case = "power_relay"
 description = "Power relay module with optional diagnostics"
 version = "1.0.0"
 
-includes = [ "stdint.h", "stdbool.h" ]
+include.global = [ "stdint.h", "stdbool.h" ]
+include.user = [ ]
 is_syncronous = true
 run_interval_ms = 10
+
+[defines]
+POWER_RELAY_ERROR_INTERVAL_MS = 250
 
 [types]
 PowerRelayState = { POWER_RELAY_STATE_OFF = 0, POWER_RELAY_STATE_ON = 1, POWER_RELAY_STATE_ERROR = 2 }
@@ -14,28 +18,31 @@ PowerRelayState = { POWER_RELAY_STATE_OFF = 0, POWER_RELAY_STATE_ON = 1, POWER_R
 [interfaces]
 RelayEnable.description = ""
 
+
 [inputs]
-relay_enable.type = "bool"
-relay_enable.init_value = "false"
-relay_enable.description = "Relay enable request"
+[inputs.enable]
+type = "bool"
+init_value = "false"
+description = "Relay enable request"
 
-diag.type = "struct"
-diag.description = "Diagnostics inputs"
+[inputs.diag.enable]
+type = "bool"
+init_value = "false"
+description = "Diagnostics enable"
 
-diag.enable.type = "bool"
-diag.enable.init_value = "false"
-diag.enable.description = "Diagnostics enable"
+[inputs.diag.relay_enabled]
+type = "bool"
+init_value = "false"
+description = "Relay enable diagnostics input"
 
-diag.relay_enabled.type = "bool"
-diag.relay_enabled.init_value = "false"
-diag.relay_enabled.description = "Relay enable diagnostics input"
-
-diag.current.type = "uint16_t"
-diag.current.init_value = "0"
-diag.current.description = "Relay current ADC value"
+[inputs.diag.current]
+type = "uint16_t"
+init_value = "0"
+description = "Relay current ADC value"
 
 [outputs]
-state.type = "PowerRelayState"
-state.init = "POWER_RELAY_OFF"
-state.description = "Relay status"
+[outputs.state]
+type = "PowerRelayState"
+init = "POWER_RELAY_OFF"
+description = "Relay status"
 
