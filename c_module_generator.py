@@ -93,10 +93,10 @@ def outputs_generate(outputs_dict, indent=0):
 
 def h_module_def_generate(module_dict):
     str_out = 'typedef struct {\n'
-    str_out += '    typedef struct {\n'
+    str_out += '    struct {\n'
     str_out += inputs_generate(module_dict['inputs'], 1)
     str_out += '    } inputs;\n'
-    str_out += '    typedef struct {\n'
+    str_out += '    struct {\n'
     str_out += outputs_generate(module_dict['outputs'], 1)
     str_out += '    } outputs;\n'
     str_out += '}} {:s};\n\n'.format(module_dict['name'])
