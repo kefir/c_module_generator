@@ -103,18 +103,35 @@ def h_module_def_generate(module_dict):
 
     return str_out
 
-def h_file_generate(toml_data):
-    out_str = h_header_generate(toml_data)
-    out_str += h_module_def_generate(toml_data)
-    # h_functions_generate(toml_data)
-    out_str += h_footer_generate()
+def h_functions_generate(module_dict):
+    str_out = 'void {:s}_init({:s}* {:s});\n'.format(
+        module_dict['name_snake_case'],
+        module_dict['name'],
+        module_dict['name_snake_case'],
+    )
 
-    return out_str
+    str_out += 'void {:s}_run({:s}* {:s});\n'.format(
+        module_dict['name_snake_case'],
+        module_dict['name'],
+        module_dict['name_snake_case'],
+    )
+
+    str_out += '\n'
+
+    return str_out
+
+def h_file_generate(toml_data):
+    str_out = h_header_generate(toml_data)
+    str_out += h_module_def_generate(toml_data)
+    str_out += h_functions_generate(toml_data)
+    str_out += h_footer_generate()
+
+    return str_out
 
 def c_file_generate(toml_data, filename):
-    out_str = '' # c_header_generate(toml_data)
+    str_out = '' # c_header_generate(toml_data)
 
-    return out_str
+    return str_out
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
