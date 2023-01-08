@@ -40,6 +40,7 @@ run_interval_ms = 10 # Defines time interval
 
 Following that are defines, types (as of now only enums are supported), interfaces (WIP) and inputs/outputs
 
+### Defines
 ```toml
 [defines]
 ERROR_INTERVAL_MS = 250 # Desired arbitrary define
@@ -51,6 +52,7 @@ This will result in define like this:
 #define POWER_RELAY_ERROR_INTERVAL_MS 250
 ```
 
+### Types
 ```toml
 [types]
 State = { OFF = 0, ON = 1, ERROR = 2 }
@@ -66,6 +68,7 @@ typedef enum {
 } PowerRelayState;
 ```
 
+### Inputs and outputs
 ```toml
 [inputs.enable] # Each input should be prefixed with `inputs.` for script to understand
 type = "bool" # Defines variable type
