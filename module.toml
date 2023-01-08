@@ -10,16 +10,14 @@ is_syncronous = true
 run_interval_ms = 10
 
 [defines]
-POWER_RELAY_ERROR_INTERVAL_MS = 250
+ERROR_INTERVAL_MS = 250
 
 [types]
-PowerRelayState = { POWER_RELAY_STATE_OFF = 0, POWER_RELAY_STATE_ON = 1, POWER_RELAY_STATE_ERROR = 2 }
+State = { OFF = 0, ON = 1, ERROR = 2 }
 
 [interfaces]
 RelayEnable.description = ""
 
-
-[inputs]
 [inputs.enable]
 type = "bool"
 init_value = "false"
@@ -40,9 +38,8 @@ type = "uint16_t"
 init_value = "0"
 description = "Relay current ADC value"
 
-[outputs]
 [outputs.state]
 type = "PowerRelayState"
-init = "POWER_RELAY_OFF"
+init = "POWER_RELAY_STATE_OFF"
 description = "Relay status"
 
